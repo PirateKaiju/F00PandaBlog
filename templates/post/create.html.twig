@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Tag{% endblock %}
+
+{% block body %}
+
+    {{ form(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+<link rel="stylesheet" href="/simplemde/simplemde.min.css">
+<script src="/simplemde/simplemde.min.js"></script>
+
+<!-- Start simple MDE -->
+<script>
+    var simplemde = new SimpleMDE({ 
+        element: document.getElementById("post_content") 
+    });
+</script>
+    
+{% endblock %}
