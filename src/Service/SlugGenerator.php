@@ -6,7 +6,7 @@ class SlugGenerator
 {
 
     public function makeSimpleSlug($text){
-        $slug = explode(" ", strtolower($this->removeNonAlphanum($this->removeAccents($text))));
+        $slug = explode(" ", strtolower($this->removeNonAlphanum($this->removeAccents($text)))); //format: this-is-1-valid-slug
         $slug = implode("-", $slug);
         return $slug;
     }
@@ -20,7 +20,7 @@ class SlugGenerator
         if ( !preg_match('/[\x80-\xff]/', $string) ){
             return $string;
         }
-    
+        //Manually handling accentuation
         $chars = array(
         // Decompositions for Latin-1 Supplement
         chr(195).chr(128) => 'A', chr(195).chr(129) => 'A',

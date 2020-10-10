@@ -25,6 +25,10 @@ class TagController extends AbstractController
         ]);
     }
 
+    public function search(){
+        //TODO: SEARCH BY TAGS HERE
+    }
+
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */

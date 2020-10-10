@@ -21,4 +21,5 @@
 
 ###> others
 /public/simplemde
+/public/css/mystyle.css
 /browserify

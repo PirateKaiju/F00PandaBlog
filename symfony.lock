@@ -84,6 +84,9 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
+    "erusev/parsedown": {
+        "version": "1.7.4"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },

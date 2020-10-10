@@ -14,7 +14,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', null, ['required' => true])
-            ->add('roles', null, ['required' => true])
+            //->add('roles', null, ['required' => true])
             ->add('password', null, ['required' => true])
             ->add('save', SubmitType::class)
         ;
