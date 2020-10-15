@@ -110,6 +110,6 @@ class UserController extends AbstractController
     }
 
     public function dashboard(){
-
+        $entityManager = $this->getDoctrine()->getManager();
     }
 }

@@ -129,5 +129,17 @@ class PostController extends AbstractController
 
     public function delete($id){
 
+        try{
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $post = $entityManager->getRepository(Post::class)->find($id);
+        
+        $entityManager->delete($post);
+
+        $entityManager->flush();
+        }catch(\Exception $e){
+            //TODO: DO SOMETHING WITH EXCEPTION
+        }
+        
     }
 }

@@ -103,7 +103,20 @@ class TagController extends AbstractController
      */
 
     public function delete($id){
-        
+        $entityManager = $this->getDoctrine()->getManager();
+
+        try{
+            $tag = $entityManager->getRepository(Tag::class)
+                ->find($id);
+            
+            $entityManager->delete($tag);
+            $entityManager->flush();
+        } catch(\Exception $e) {
+
+        }
+
+        return $this->redirectToRoute('tag_index');
+
     }
 
 }

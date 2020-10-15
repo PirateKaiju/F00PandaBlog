@@ -47,4 +47,20 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getPostsPagedSimple($page = 1, $limit = 5){
+
+        if (!is_int($page) || $page < 0) {
+            $page = 1;
+        }
+        
+        $offset = ($page - 1) * $limit;
+
+        return $this->createQueryBuilder('p')
+            ->setFirstResult( $offset )
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+
+    }
 }
