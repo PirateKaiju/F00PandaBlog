@@ -31,6 +31,7 @@ class TagController extends AbstractController
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
+     * @IsGranted("ROLE_USER")
      */
 
     public function create(Request $request){
@@ -65,6 +66,7 @@ class TagController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit($id, Request $request){
 
@@ -100,6 +102,7 @@ class TagController extends AbstractController
 
     /**
      * @Route("/edit/{id}/delete", name="delete", methods={"POST"})
+     * @IsGranted("ROLE_USER")
      */
 
     public function delete($id){

@@ -8,8 +8,23 @@
         <div class="column">
             <div class="section">
                 <div class="container">
-
-                    
+                    <div class="table-container">
+                        <table class="table is-hoverable is-fullwidth">
+                        
+                        
+                        {% for post in posts %}
+                            <tr>
+                            
+                                <th>{{ post.id }}</th>
+                                <td><a href="/post/{{ post.id }}/{{ post.slug }}">{{ post.title }}</a></td>
+                                <td><a href="/post/{{ post.id }}/edit">Edit</a></td>
+                                <td><a href="/post/{{ post.id }}/delete">Delete</a></td>
+                            
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </div>
+                        
 
                 </div>
             </div>

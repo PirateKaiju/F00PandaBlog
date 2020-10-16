@@ -9,6 +9,7 @@ use App\Service\SlugGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 /**
@@ -53,6 +54,7 @@ class PostController extends AbstractController
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function create(Request $request){
 
@@ -77,6 +79,8 @@ class PostController extends AbstractController
 
             //TODO: HANDLE IMAGES
 
+            //TODO: HANDLE TAGS
+
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->persist($post);
@@ -92,6 +96,7 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit($id, Request $request){
 
@@ -145,7 +150,7 @@ class PostController extends AbstractController
 
     }
 
-
+    //@IsGranted("ROLE_USER")
     public function delete($id){
 
         try{

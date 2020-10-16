@@ -2,7 +2,11 @@
 
 $body-background-color: #333;
 $body-color: #EEE;
-$primary: #8A4D76;
+$primary: #FFA66B;
+
+$TTT: #F00;
+
+$other-primary: #DC5B21;
 
 $input-shadow:none;
 $input-placeholder-color: #CCC;
@@ -14,6 +18,9 @@ $link-hover: #00C2DD;
 $pagination-color: #8CC2DD;
 $pagination-active-color: #CCC;
 
+$table-background-color: #FFE9C9;
+$table-cell-heading-color: #EEE;
+
 @import "../node_modules/bulma/bulma.sass";
 
 .input {
@@ -23,5 +30,5 @@ $pagination-active-color: #CCC;
 };
 
 .editor-toolbar {
-    background-color: $primary;
+    background-color: $other-primary;
 }

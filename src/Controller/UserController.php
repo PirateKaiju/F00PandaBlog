@@ -9,8 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+use App\Entity\Post;
 /**
  * @Route("/user", name="user_")
+ * @IsGranted("ROLE_USER")
  */
 
 class UserController extends AbstractController
@@ -35,7 +39,7 @@ class UserController extends AbstractController
      * @Route("/register", name="register", methods={"GET", "POST"})
      */
     public function register(Request $request){
-
+        //only other users may create (leave this?)
         $form = $this->createForm(UserType::class, null, [
             'action' => $this->generateUrl('user_register'),
             'method' => 'POST'
@@ -71,6 +75,10 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
+     */
+
     public function edit($id, Request $request){
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -79,7 +87,7 @@ class UserController extends AbstractController
             ->find($id);
 
         $form = $this->createForm(UserType::class, $user, [
-            'action' => $this->generateUrl('register'),
+            'action' => $this->generateUrl('user_edit', ['id' => $id]), //TODO: CHECK IF VALID?
             'method' => 'POST'
         ]);
 
@@ -109,7 +117,15 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @Route("/dashboard", name="dashboard", methods={"GET"})
+     */
     public function dashboard(){
         $entityManager = $this->getDoctrine()->getManager();
+
+        $posts = $entityManager->getRepository(Post::class)
+            ->findAll(); //TODO: CONSIDER PAGINATION?
+        
+        return $this->render('user/dashboard.html.twig', ['posts' => $posts]);
     }
 }
