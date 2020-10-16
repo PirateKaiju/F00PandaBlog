@@ -32,6 +32,25 @@ class PostController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/all/{page}", name="paged", methods={"GET"}, requirements={"page"="\d+"})
+     */
+    public function getPage($page = 1){
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $POSTS_PER_PAGE = 10;
+
+        $posts = $entityManager->getRepository(Post::class)
+            ->getPostsPagedSimple($page);
+
+        //dd($posts);
+
+        return $this->render('post/showall.html.twig', ['posts' => $posts, 'page' => $page]);
+
+    }
+
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */
@@ -130,16 +149,19 @@ class PostController extends AbstractController
     public function delete($id){
 
         try{
-        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
-        $post = $entityManager->getRepository(Post::class)->find($id);
-        
-        $entityManager->delete($post);
+            $post = $entityManager->getRepository(Post::class)->find($id);
+            
+            $entityManager->delete($post);
 
-        $entityManager->flush();
+            $entityManager->flush();
         }catch(\Exception $e){
             //TODO: DO SOMETHING WITH EXCEPTION
+            
         }
+
+        return $this->redirectToRoute('user_index');
         
     }
 }

@@ -8,6 +8,12 @@ $input-shadow:none;
 $input-placeholder-color: #CCC;
 $input-background-color: #555;
 
+$link: #8CC2DD;
+$link-hover: #00C2DD;
+
+$pagination-color: #8CC2DD;
+$pagination-active-color: #CCC;
+
 @import "../node_modules/bulma/bulma.sass";
 
 .input {

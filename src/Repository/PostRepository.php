@@ -50,13 +50,20 @@ class PostRepository extends ServiceEntityRepository
 
     public function getPostsPagedSimple($page = 1, $limit = 5){
 
-        if (!is_int($page) || $page < 0) {
+        /*if (!is_int($page) || $page < 0) {
             $page = 1;
-        }
+        }*/
         
         $offset = ($page - 1) * $limit;
 
+        /*dd($this->createQueryBuilder('p')
+        ->orderBy('p.id','ASC')
+        ->setFirstResult( $offset )
+        ->setMaxResults($limit)
+        ->getQuery());*/
+
         return $this->createQueryBuilder('p')
+            ->orderBy('p.id','ASC')
             ->setFirstResult( $offset )
             ->setMaxResults($limit)
             ->getQuery()

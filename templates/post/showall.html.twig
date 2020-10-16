@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Posts {% endblock %}
+
+{% block body %}
+
+<div class="columns is-centered">
+    <div class="column is-three-quarters">
+        <div class="section">
+            <div class="container mb-6">
+                <div class="content">
+                    <div class="tile is-ancestor ">
+                        <div class="tile is-vertical is-4">
+                            <ul>
+                                {% for post in posts %}
+                                    
+                                    <li>
+                                        <div class="tile mb-3">
+                                            <a href="/post/{{ post.id }}">{{ post.title }}</a>
+                                        </div>
+                                    </li>
+                                    
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-6">
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                
+                {% if page > 1 %}
+                    <a class="pagination-previous" href="/post/all/{{ page - 1 }}">Previous</a>
+                {% endif %}
+
+                <a class="pagination-next" href="/post/all/{{ page + 1 }}">Next page</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
